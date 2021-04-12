@@ -5,6 +5,7 @@ using Galaxies.IO;
 using Galaxies.IO.Contracts;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Galaxies
 {
@@ -18,10 +19,12 @@ namespace Galaxies
 
         static IEngine BuildEngine()
         {
+            IDictionary<string, object> dependanciesDict = BuildDependenciesDict();
+
             return new Engine(
-                reader: new ConsoleReader(),
+                reader: dependanciesDict[typeof(IReader).FullName] as IReader,
                 commandInterpreter: new CommandInterpreter(
-                    dependanciesDict: BuildDependenciesDict()
+                    dependanciesDict: dependanciesDict
                     )
                 );
         }
