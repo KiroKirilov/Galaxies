@@ -9,8 +9,26 @@ namespace Galaxies.Core.Contracts
     {
         IEnumerable<Galaxy> Galaxies { get; }
 
+        IEnumerable<Star> Stars { get; }
+
+        IEnumerable<Planet> Planets { get; }
+
+        IEnumerable<Moon> Moons { get; }
+
+        int GalaxiesCount { get; }
+
+        int StarsCount { get; }
+
+        int PlanetsCount { get; }
+
+        int MoonsCount { get; }
+
         void AddGalaxy(string name, string type, string ageString);
 
         void AddStar(string starName, string galaxyName, double mass, double size, int temp, double luminosity);
+
+        void AddPlanet(string planetName, string starName, string type, bool supportsLife);
+
+        void AddMoon(string moonName, string planetName);
     }
 }

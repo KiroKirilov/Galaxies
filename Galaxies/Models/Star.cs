@@ -6,6 +6,8 @@ namespace Galaxies.Models
 {
     public class Star : BaseModel
     {
+        private readonly IList<Planet> planets = new List<Planet>();
+
         public double Mass { get; set; }
 
         public double Luminosity { get; set; }
@@ -13,5 +15,12 @@ namespace Galaxies.Models
         public double Size { get; set; }
 
         public int Temp { get; set; }
+
+        public ICollection<Planet> Planets => this.planets;
+
+        public void AddPlanet(Planet planet)
+        {
+            this.planets.Add(planet);
+        }
     }
 }
