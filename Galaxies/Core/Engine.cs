@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Galaxies.Core
 {
@@ -36,9 +37,10 @@ namespace Galaxies.Core
 
         private CommandInfo ReadCommandInfo()
         {
-            IList<string> commandArgs = this.reader.ReadLine()
-                .Split(' ')
-                .ToList();
+            string commandLine = this.reader.ReadLine();
+
+            // split by space, unless it's in brackets
+            IList<string> commandArgs = Regex.Split(commandLine, @"\s+(?![^\\[]*\])").ToList();
 
             string commandName = commandArgs[0];
             commandArgs.RemoveAt(0);
@@ -46,7 +48,7 @@ namespace Galaxies.Core
             return new CommandInfo
             {
                 Name = commandName,
-                Args =commandArgs
+                Args = commandArgs
             };
         }
     }
