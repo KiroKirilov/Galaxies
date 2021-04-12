@@ -25,6 +25,10 @@ namespace Galaxies.Commands.CommandImplementations
                     this.AddGalaxy();
                     break;
 
+                case Constants.EntityTypes.Star:
+                    this.AddStar();
+                    break;
+
                 default:
                     break;
             }
@@ -37,6 +41,18 @@ namespace Galaxies.Commands.CommandImplementations
             string ageString = this.Args[3];
 
             this.unitOfWork.AddGalaxy(name, type, ageString);
+        }
+
+        private void AddStar()
+        {
+            string galaxyName = this.Args[1];
+            string starName = this.Args[2];
+            double mass = double.Parse(this.Args[3]);
+            double size = double.Parse(this.Args[4]);
+            int temp = int.Parse(this.Args[5]);
+            double luminosity = double.Parse(this.Args[6]);
+
+            this.unitOfWork.AddStar(starName, galaxyName, mass, size, temp, luminosity);
         }
     }
 }

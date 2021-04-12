@@ -11,6 +11,7 @@ namespace Galaxies.Common
         public class EntityTypes
         {
             public const string Galaxy = "galaxy";
+            public const string Star = "star";
         }
     }
 }

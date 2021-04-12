@@ -10,5 +10,7 @@ namespace Galaxies.Core.Contracts
         IEnumerable<Galaxy> Galaxies { get; }
 
         void AddGalaxy(string name, string type, string ageString);
+
+        void AddStar(string starName, string galaxyName, double mass, double size, int temp, double luminosity);
     }
 }
