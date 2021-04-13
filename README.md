@@ -116,6 +116,7 @@ M 2400 – 3700 ≤ 0.08 0.08–0.45 ≤ 0.
 
 
 **Примерен вход**
+```
 add galaxy [Milky way] elliptical 13.2B
 add star [Milky way] [Sun] 0.99 0.99 7.77 4.
 add planet [Sun] [Earth] terrestrial yes
@@ -124,6 +125,7 @@ stats
 list galaxies
 print [Milky way]
 exit
+```
 
 **Примерен изход**
 ```
