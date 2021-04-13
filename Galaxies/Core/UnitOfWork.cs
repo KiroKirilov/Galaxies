@@ -39,15 +39,14 @@ namespace Galaxies.Core
         public int PlanetsCount => this.planets.Count;
         public int MoonsCount => this.moons.Count;
 
-        public void AddGalaxy(string name, string type, string ageString)
+        public void AddGalaxy(string name, string type, double age, string ageSuffix)
         {
-            (double age, string ageSuffix) parsedAge = this.ParseAgeString(ageString);
             Galaxy galaxy = new Galaxy
             {
-                Name = this.RemoveBracketsFromName(name),
+                Name = name,
                 Type = type,
-                Age = parsedAge.age,
-                AgeSuffix = parsedAge.ageSuffix
+                Age = age,
+                AgeSuffix = ageSuffix
             };
 
             this.galaxies.Add(galaxy);
@@ -57,14 +56,14 @@ namespace Galaxies.Core
         {
             Star star = new Star
             {
-                Name = this.RemoveBracketsFromName(starName),
+                Name = starName,
                 Luminosity = luminosity,
                 Mass = mass,
                 Size = size,
                 Temp = temp
             };
 
-            Galaxy galaxy = this.galaxies.FirstOrDefault(x => x.Name == this.RemoveBracketsFromName(galaxyName));
+            Galaxy galaxy = this.galaxies.FirstOrDefault(x => x.Name == galaxyName);
             if (galaxy != null)
             {
                 // we keep two copies of the same ref for convinience sake
@@ -77,12 +76,12 @@ namespace Galaxies.Core
         {
             Planet planet = new Planet
             {
-                Name = this.RemoveBracketsFromName(planetName),
+                Name = planetName,
                 Type = type,
                 SupportsLife = supportsLife
             };
 
-            Star star = this.stars.FirstOrDefault(x => x.Name == this.RemoveBracketsFromName(starName));
+            Star star = this.stars.FirstOrDefault(x => x.Name == starName);
 
             if (star != null)
             {
@@ -95,28 +94,16 @@ namespace Galaxies.Core
         {
             Moon moon = new Moon
             {
-                Name = this.RemoveBracketsFromName(moonName)
+                Name = moonName
             };
 
-            Planet planet = this.planets.FirstOrDefault(x => x.Name == this.RemoveBracketsFromName(planetName));
+            Planet planet = this.planets.FirstOrDefault(x => x.Name == planetName);
 
             if (planet != null)
             {
                 planet.AddMoon(moon);
                 this.moons.Add(moon);
             }
-        }
-
-        private string RemoveBracketsFromName(string name)
-        {
-            return name.Trim('[', ']');
-        }
-
-        private (double age, string ageSuffix) ParseAgeString(string ageString)
-        {
-            char suffix = ageString[ageString.Length - 1];
-            double age = double.Parse(ageString.TrimEnd(suffix));
-            return (age, suffix.ToString());
         }
     }
 }

@@ -45,17 +45,17 @@ namespace Galaxies.Commands.CommandImplementations
 
         private void AddGalaxy()
         {
-            string name = this.Args[1];
+            string name = this.Args[1].TrimBrackets();
             string type = this.Args[2];
-            string ageString = this.Args[3];
+            (double age, string ageSuffix) parsedAge = this.ParseAgeString(this.Args[3]);
 
-            this.unitOfWork.AddGalaxy(name, type, ageString);
+            this.unitOfWork.AddGalaxy(name, type, parsedAge.age, parsedAge.ageSuffix);
         }
 
         private void AddStar()
         {
-            string galaxyName = this.Args[1];
-            string starName = this.Args[2];
+            string galaxyName = this.Args[1].TrimBrackets();
+            string starName = this.Args[2].TrimBrackets();
             double mass = double.Parse(this.Args[3]);
             double size = double.Parse(this.Args[4]);
             int temp = int.Parse(this.Args[5]);
@@ -66,8 +66,8 @@ namespace Galaxies.Commands.CommandImplementations
 
         private void AddPlanet()
         {
-            string starName = this.Args[1];
-            string planetName = this.Args[2];
+            string starName = this.Args[1].TrimBrackets();
+            string planetName = this.Args[2].TrimBrackets();
             string type = this.Args[3];
             bool supportsLife = string.Equals(this.Args[4], Constants.SupportsLifeTrueValue, StringComparison.OrdinalIgnoreCase);
 
@@ -76,10 +76,17 @@ namespace Galaxies.Commands.CommandImplementations
 
         private void AddMoon()
         {
-            string planetName = this.Args[1];
-            string moonName = this.Args[2];
+            string planetName = this.Args[1].TrimBrackets();
+            string moonName = this.Args[2].TrimBrackets();
 
             this.unitOfWork.AddMoon(moonName, planetName);
+        }
+
+        private (double age, string ageSuffix) ParseAgeString(string ageString)
+        {
+            char suffix = ageString[ageString.Length - 1];
+            double age = double.Parse(ageString.TrimEnd(suffix));
+            return (age, suffix.ToString());
         }
     }
 }
