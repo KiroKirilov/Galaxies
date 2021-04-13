@@ -10,6 +10,8 @@ namespace Galaxies.Common
 
         public const string SupportsLifeTrueValue = "yes";
 
+        public const string SupportsLifeFalseValue = "no";
+
         public class EntityTypes
         {
             public const string Galaxy = "galaxy";

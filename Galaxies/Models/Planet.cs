@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Galaxies.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,6 +18,28 @@ namespace Galaxies.Models
         public void AddMoon(Moon moon)
         {
             this.moons.Add(moon);
+        }
+
+        public override string ToString()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"Name: {this.Name}");
+            builder.AppendLine($"\t\t  Type: {this.Type}");
+            builder.AppendLine($"\t\t  Support life: {(this.SupportsLife ? Constants.SupportsLifeTrueValue : Constants.SupportsLifeFalseValue)}");
+            if (this.moons.Count == 0)
+            {
+                builder.AppendLine($"\t\t  Moons: none");
+            }
+            else
+            {
+                builder.AppendLine("\t\t  Moon:");
+                foreach (Moon moon in this.moons)
+                {
+                    builder.AppendLine($"\t\t\t▪ {moon}");
+                }
+            }
+
+            return builder.ToString();
         }
     }
 }

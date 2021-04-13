@@ -6,5 +6,9 @@ namespace Galaxies.Models
 {
     public class Moon : BaseModel
     {
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

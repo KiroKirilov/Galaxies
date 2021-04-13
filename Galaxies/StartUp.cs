@@ -6,6 +6,7 @@ using Galaxies.IO.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace Galaxies
 {
@@ -13,6 +14,9 @@ namespace Galaxies
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.InputEncoding = Encoding.Unicode;
+
             IEngine engine = BuildEngine();
             engine.Run();
         }
