@@ -6,6 +6,6 @@ namespace Galaxies.Commands.Contracts
 {
     public interface ICommandInterpreter
     {
-        ICommand CreateCommand(string commandName, IList<string> args);
+        ICommand CreateCommand(CommandInfo commandInfo);
     }
 }

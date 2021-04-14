@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Galaxies.Core
+namespace Galaxies.Commands
 {
     public class CommandInfo
     {

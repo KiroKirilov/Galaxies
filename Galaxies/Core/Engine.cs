@@ -1,4 +1,5 @@
-﻿using Galaxies.Commands.Contracts;
+﻿using Galaxies.Commands;
+using Galaxies.Commands.Contracts;
 using Galaxies.Core.Contracts;
 using Galaxies.IO.Contracts;
 using System;
@@ -22,6 +23,7 @@ namespace Galaxies.Core
 
         public void Run()
         {
+            // the app is closed with the exit command
             while (true)
             {
                 CommandInfo commandInfo = this.ReadCommandInfo();
@@ -30,7 +32,7 @@ namespace Galaxies.Core
                     continue;
                 }
 
-                ICommand command = this.commandInterpreter.CreateCommand(commandInfo.Name, commandInfo.Args);
+                ICommand command = this.commandInterpreter.CreateCommand(commandInfo);
                 command.Execute();
             }
         }

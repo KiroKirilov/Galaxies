@@ -19,9 +19,9 @@ namespace Galaxies.Commands
             this.dependanciesDict = dependanciesDict;
         }
 
-        public ICommand CreateCommand(string commandName, IList<string> args)
+        public ICommand CreateCommand(CommandInfo commandInfo)
         {
-            string fullCommandName = commandName + Constants.CommandSuffix;
+            string fullCommandName = commandInfo.Name + Constants.CommandSuffix;
 
             Type commandType = Assembly.GetCallingAssembly()
                 .GetTypes()
@@ -43,7 +43,7 @@ namespace Galaxies.Commands
                 {
                     if (currentParameterType == typeof(IList<string>))
                     {
-                        parametersToInvokeWith[i] = args;
+                        parametersToInvokeWith[i] = commandInfo.Args;
                         continue;
                     }
 
