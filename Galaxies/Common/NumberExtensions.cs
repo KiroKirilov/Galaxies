@@ -8,12 +8,12 @@ namespace Galaxies.Common
     {
         public static bool IsInRange(this int num, int min, int max)
         {
-            return num >= min && num <= max;
+            return num >= min && num < max;
         }
 
         public static bool IsInRange(this double num, double min, double max)
         {
-            return num >= min && num <= max;
+            return num >= min && num < max;
         }
     }
 }
