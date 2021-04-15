@@ -32,7 +32,7 @@ namespace Galaxies.Models
             }
             else
             {
-                builder.AppendLine("\t\t  Moon:");
+                builder.AppendLine("\t\t  Moons:");
                 foreach (Moon moon in this.moons)
                 {
                     builder.AppendLine($"\t\t\t▪ {moon}");

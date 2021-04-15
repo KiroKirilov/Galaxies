@@ -106,6 +106,8 @@ namespace Galaxies.Models
                 foreach (Planet planet in this.planets)
                 {
                     builder.AppendLine($"\t\to {planet}");
+                    builder.TrimEnd();
+                    builder.AppendLine();
                 }
             }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Galaxies.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -37,10 +38,12 @@ namespace Galaxies.Models
                 foreach (Star star in this.stars)
                 {
                     builder.AppendLine($"\t- {star}");
+                    builder.TrimEnd();
+                    builder.AppendLine();
                 }
             }
 
-            builder.AppendLine($"--- End of data for {this.Name} galaxy ---");
+            builder.Append($"--- End of data for {this.Name} galaxy ---");
 
             return builder.ToString();
         }
